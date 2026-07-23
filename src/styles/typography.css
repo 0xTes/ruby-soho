@@ -1,0 +1,56 @@
+body {
+  font-family: var(--font-family-sans);
+
+  font-size: var(--text-base);
+
+  font-weight: var(--font-weight-regular);
+
+  color: var(--color-text);
+
+  background: var(--color-background);
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+
+  font-family: var(--font-family-heading);
+
+  font-weight: var(--font-weight-bold);
+
+  color: var(--color-secondary);
+
+  line-height: 1.1;
+
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-h1);
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+
+h3 {
+  font-size: var(--text-h3);
+}
+
+p {
+  margin: 0;
+
+  line-height: 1.7;
+
+  text-wrap: pretty;
+}
