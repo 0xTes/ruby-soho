@@ -1,21 +1,22 @@
 import { forwardRef } from "react";
+
 import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 import { cn } from "../../lib/cn";
 
 /**
- * Accessible trigger button used by SupportMenu.
+ * Support menu trigger.
  *
- * Stateless:
- * - renders the correct icon
- * - exposes its DOM node through a forwarded ref
- * *does not* manage menu state
+ * Responsibilities:
+ * - toggles the support menu
+ * - reflects open/closed state
+ * - exposes the underlying button element
  */
 const MenuButton = forwardRef(function MenuButton(
   {
     isOpen = false,
-    onClick,
     className = "",
+    ...props
   },
   ref,
 ) {
@@ -25,9 +26,9 @@ const MenuButton = forwardRef(function MenuButton(
     <button
       ref={ref}
       type="button"
-      aria-label={isOpen ? "Close support menu" : "Open support menu"}
       aria-expanded={isOpen}
-      onClick={onClick}
+      aria-haspopup="menu"
+      aria-label={isOpen ? "Close support menu" : "Open support menu"}
       className={cn(
         "inline-flex",
         "h-12",
@@ -37,32 +38,28 @@ const MenuButton = forwardRef(function MenuButton(
 
         "rounded-full",
 
-        "border",
-        "border-[var(--color-secondary)]",
-
         "bg-white",
 
         "text-[var(--color-secondary)]",
 
-        "shadow-sm",
+        "shadow-md",
 
         "transition-all",
         "duration-200",
 
         "hover:-translate-y-0.5",
-        "hover:border-[var(--color-primary)]",
-        "hover:text-[var(--color-primary)]",
-        "hover:shadow-md",
+        "hover:shadow-lg",
 
-        "active:translate-y-0",
+        "active:scale-[0.97]",
 
         "focus-visible:outline-none",
         "focus-visible:ring-2",
         "focus-visible:ring-[var(--color-primary)]",
-        "focus-visible:ring-offset-2",
+        "focus-visible:ring-offset-4",
 
         className,
       )}
+      {...props}
     >
       <Icon
         aria-hidden="true"
