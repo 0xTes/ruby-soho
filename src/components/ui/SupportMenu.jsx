@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import { AnimatePresence, motion } from "motion/react";
 
-import { brand } from '../../config/brand';
+import { brand } from "../../config/brand";
 
-import Card from './Card';
-import MenuButton from './MenuButton';
-import SupportMenuItem from './SupportMenuItem';
+import Card from "./Card";
+import MenuButton from "./MenuButton";
+import SupportMenuItem from "./SupportMenuItem";
 
 /**
  * Floating support menu.
@@ -29,9 +30,9 @@ function SupportMenu() {
   }
 
   const closeMenu = useCallback(() => {
-  setIsOpen(false);
-  buttonRef.current?.focus();
-}, []);
+    setIsOpen(false);
+    buttonRef.current?.focus();
+  }, []);
 
   function toggleMenu() {
     if (isOpen) {
@@ -55,7 +56,7 @@ function SupportMenu() {
 
   useEffect(() => {
     function handleKeyDown(event) {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeMenu();
       }
     }
@@ -69,17 +70,20 @@ function SupportMenu() {
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [closeMenu]);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div
+      ref={containerRef}
+      className="relative"
+    >
       <MenuButton
         ref={buttonRef}
         isOpen={isOpen}
@@ -89,35 +93,35 @@ function SupportMenu() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-             initial={{
-             opacity: 0,
-             y: -8,
-             scale: 0.98,
-           }}
-           animate={{
-             opacity: 1,
-             y: 0,
-             scale: 1,
-           }}
-           exit={{
-             opacity: 0,
-             y: -8,
-             scale: 0.98,
-           }}
-           transition={{
-             duration: 0.2,
-             ease: "easeOut",
-           }}
-           className="absolute right-0 mt-4"
-        >
-           <Card
-             role="menu"
-             aria-label="Support menu"
-             className="w-72 overflow-hidden rounded-3xl p-1"
-           >
-             {renderSupportItems()}
-           </Card>
-         </motion.div>
+            initial={{
+              opacity: 0,
+              y: -8,
+              scale: 0.98,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: -8,
+              scale: 0.98,
+            }}
+            transition={{
+              duration: 0.2,
+              ease: "easeOut",
+            }}
+            className="absolute right-0 mt-4 origin-top-right"
+          >
+            <Card
+              role="menu"
+              aria-label="Support menu"
+              className="w-72 overflow-hidden rounded-3xl p-1"
+            >
+              {renderSupportItems()}
+            </Card>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
