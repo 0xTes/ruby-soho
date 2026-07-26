@@ -20,16 +20,20 @@ const MenuButton = forwardRef(function MenuButton(
   },
   ref,
 ) {
-  const Icon = isOpen ? HiOutlineXMark : HiOutlineBars3;
-
   return (
     <button
       ref={ref}
       type="button"
       aria-expanded={isOpen}
       aria-haspopup="menu"
-      aria-label={isOpen ? "Close support menu" : "Open support menu"}
+      aria-label={
+        isOpen
+          ? "Close support menu"
+          : "Open support menu"
+      }
       className={cn(
+        "group",
+
         "inline-flex",
         "h-12",
         "w-12",
@@ -50,7 +54,10 @@ const MenuButton = forwardRef(function MenuButton(
         "hover:-translate-y-0.5",
         "hover:shadow-lg",
 
-        "active:scale-[0.97]",
+        "active:scale-[0.96]",
+
+        isOpen &&
+          "bg-[var(--color-primary)] text-white shadow-lg",
 
         "focus-visible:outline-none",
         "focus-visible:ring-2",
@@ -61,10 +68,30 @@ const MenuButton = forwardRef(function MenuButton(
       )}
       {...props}
     >
-      <Icon
-        aria-hidden="true"
-        className="h-6 w-6"
-      />
+      <span
+        className={cn(
+          "flex",
+          "items-center",
+          "justify-center",
+
+          "transition-transform",
+          "duration-200",
+
+          isOpen && "rotate-90",
+        )}
+      >
+        {isOpen ? (
+          <HiOutlineXMark
+            aria-hidden="true"
+            className="h-6 w-6"
+          />
+        ) : (
+          <HiOutlineBars3
+            aria-hidden="true"
+            className="h-6 w-6"
+          />
+        )}
+      </span>
     </button>
   );
 });

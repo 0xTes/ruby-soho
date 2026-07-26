@@ -6,9 +6,9 @@ import { cn } from "../../lib/cn";
  * Primary action button.
  *
  * Responsibilities:
- * - renders either a <button> or <a>
- * - applies primary button styling
- * - exposes the underlying DOM node via forwardRef
+ * - renders the primary call-to-action
+ * - supports button and anchor variants
+ * - exposes the underlying DOM element
  */
 const Button = forwardRef(function Button(
   {
@@ -19,42 +19,44 @@ const Button = forwardRef(function Button(
     rel,
     onClick,
     type = "button",
-    disabled = false,
     ...props
   },
   ref,
 ) {
   const classes = cn(
-    "inline-flex items-center justify-center",
-
-    "h-14",
+    "inline-flex",
+    "min-h-14",
+    "items-center",
+    "justify-center",
 
     "rounded-full",
 
     "bg-[var(--color-primary)]",
 
-    "px-10",
+    "px-8",
 
     "font-semibold",
-
     "text-white",
 
-    "shadow-lg",
+    "shadow-md",
 
-    "transition-all duration-200",
+    "transition-all",
+    "duration-200",
 
-    "hover:-translate-y-0.5",
-    "hover:shadow-xl",
+    "motion-safe:hover:-translate-y-0.5",
+    "motion-safe:hover:shadow-lg",
+    "motion-safe:hover:brightness-105",
 
+    "active:translate-y-0",
     "active:scale-[0.98]",
-
-    "disabled:pointer-events-none",
-    "disabled:opacity-60",
 
     "focus-visible:outline-none",
     "focus-visible:ring-2",
     "focus-visible:ring-[var(--color-primary)]",
     "focus-visible:ring-offset-4",
+
+    "disabled:pointer-events-none",
+    "disabled:opacity-50",
 
     className,
   );
@@ -79,7 +81,6 @@ const Button = forwardRef(function Button(
       ref={ref}
       type={type}
       onClick={onClick}
-      disabled={disabled}
       className={classes}
       {...props}
     >

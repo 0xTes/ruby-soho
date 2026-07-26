@@ -4,11 +4,6 @@ import { cn } from "../../lib/cn";
 
 /**
  * Circular icon button for external social links.
- *
- * Responsibilities:
- * - renders a circular icon link
- * - provides accessible labels
- * - exposes the underlying anchor element
  */
 const IconButton = forwardRef(function IconButton(
   {
@@ -29,6 +24,8 @@ const IconButton = forwardRef(function IconButton(
       aria-label={label}
       title={label}
       className={cn(
+        "group",
+
         "inline-flex",
         "h-14",
         "w-14",
@@ -49,10 +46,9 @@ const IconButton = forwardRef(function IconButton(
         "transition-all",
         "duration-200",
 
-        "hover:-translate-y-0.5",
-        "hover:border-[var(--color-primary)]",
-        "hover:text-[var(--color-primary)]",
-        "hover:shadow-lg",
+        "motion-safe:hover:-translate-y-0.5",
+        "motion-safe:hover:border-[var(--color-primary)]",
+        "motion-safe:hover:shadow-lg",
 
         "active:scale-[0.97]",
 
@@ -67,7 +63,16 @@ const IconButton = forwardRef(function IconButton(
     >
       <Icon
         aria-hidden="true"
-        className="h-5 w-5"
+        className={cn(
+          "h-5",
+          "w-5",
+
+          "transition-all",
+          "duration-200",
+
+          "group-hover:text-[var(--color-primary)]",
+          "motion-safe:group-hover:scale-110",
+        )}
       />
     </a>
   );

@@ -42,11 +42,15 @@ const Avatar = forwardRef(function Avatar(
           "block",
           "h-auto",
           "w-full",
+
           "object-cover",
+
           "select-none",
+
           "transition-transform",
-          "duration-300",
-          "motion-safe:hover:scale-[1.01]",
+          "duration-500",
+
+          "motion-safe:hover:scale-[1.02]",
         )}
       />
 
